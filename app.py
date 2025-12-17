@@ -9,29 +9,34 @@ st.markdown(
 )
 
 # Input box to ask question
+st.markdown(
+    "<h4 style='text-align:left; color:#2196F3;'>Let's Chat</h4>",
+    unsafe_allow_html=True
+)
 question = st.text_input("Ask something:")
-# Button to ask question
-col1, col2, col3 = st.columns([1, 2, 1])
 
-with col2:
-    if st.button("Ask", type = "primary"):
-        if question.strip():
-            placeholder = st.empty()
-            response_text = ""
+# Ask button functionality
+if st.button("Ask", type = "primary"):
+    if question.strip():
+        placeholder = st.empty()
+        response_text = ""
 
-            for word in ask_question(question):
-                response_text += word
-                placeholder.markdown(f"**Assistant:** {response_text}")
+        for word in ask_question(question):
+            response_text += word
+            placeholder.markdown(f"**Assistant:** {response_text}")
 
 # Conversation section
-st.subheader("Conversation")
+st.markdown(
+    "<h4 style='text-align:left; color:#2196F3;'>Conversation History</h4>",
+    unsafe_allow_html=True
+)
+# Write write
 for item in history:
     st.write(item)
 
-col1, col2, col3 = st.columns([1, 2, 1])
-with col2:
-    if st.button("Clear Chat", type ="primary"):
-        history.clear()
+# Clear Chat
+if st.button("Clear Chat", type ="primary"):
+    history.clear()
 
 
 
